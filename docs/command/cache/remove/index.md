@@ -15,7 +15,8 @@ Remove cached artifacts.
 |------------|-------------|
 | [`version`](./version) | Remove cached Node.js archives (default). |
 | [`metadata`](./metadata) | Remove cached metadata files. |
-| [`all`](./all) | Clear metadata and versions caches. |
+| [`jwt`](./jwt) | Clear the cached mirror license JWT. |
+| [`all`](./all) | Clear metadata, versions, and mirror license JWT caches. |
 
 ## Notes
 

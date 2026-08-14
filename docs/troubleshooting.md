@@ -9,6 +9,7 @@
 | `sync.exe not found` for `doctor` or `upgrade` | Missing/corrupt sync utility | `nvm env`; run `nvm doctor --list` | Reinstall/repair distribution so sync utility is restored |
 | Link mode fails to activate | Link/junction privilege or path issue | `nvm use link`; `nvm env` | Switch to shim (`nvm use shim`) or grant required link privileges |
 | Cache grows too large | Long-lived cache retention | `nvm cache view`; `nvm list cached` | `nvm cache remove version ...`; `nvm cache remove all` |
+| Author mirror returns `401` after policy/license change | Stale in-process mirror license JWT | Retry request; inspect `nvm env` | `nvm cache remove jwt`, then retry the mirror operation |
 | Mirror unreachable warnings | Network/proxy/mirror issue | `nvm env` mirror reachability section | Set mirrors/proxy with `nvm config set node_mirror=... npm_mirror=... proxy=...` |
 | Alias command rejected | Reserved alias name used | `nvm alias list` | Choose non-reserved alias (`legacy`, `stable24`, etc.) |
 | `package.json not found` with `nvm rc --file=package.json` | Command run in wrong directory | `dir package.json` | Run command in project root or use `.nvmrc` target |

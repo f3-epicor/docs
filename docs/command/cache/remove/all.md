@@ -5,7 +5,7 @@ sidebar_position: 3
 
 # nvm cache remove all
 
-Clear both metadata and versions caches.
+Clear metadata, versions, and mirror license JWT caches.
 
 ## Usage
 
@@ -26,3 +26,7 @@ This subcommand has no flags.
 ```powershell
 nvm cache remove all
 ```
+
+## Notes
+
+Also clears the in-process mirror license JWT cache when present. See [`nvm cache remove jwt`](./jwt).

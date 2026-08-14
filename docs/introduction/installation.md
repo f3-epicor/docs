@@ -22,13 +22,10 @@ winget install nvm
 nvm install lts
 ```
 
----
+### Upgrade from v1
 
-##
+Just [download](https://github.com/nvm-windows/nvm/releases) and install. The installer automatically migrates v1 to v2.
 
-1. Upgrades
-1. Migrations
-
-Screenshots of installer?
-
-It's basically install nvm, install your version, done.
+:::warning Legacy Updater
+The v1 updater is designed for minor and patch upgrades in the legacy v1.x.x line. It will not work with v2.
+:::

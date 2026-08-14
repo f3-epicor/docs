@@ -13,18 +13,20 @@ Installed versions of Node.js are visible in the Windows Apps screen. It is poss
 
 ## Windows Event Center
 
-Critical events, such as installations, configuration changes, and security events are logged natively. This allows for clear organization observability and auditing using tools most companies already implement.
+Critical events, such as installations, configuration changes, and security events are logged natively. This allows for clear organization observability and auditing using common tools most organizations already have.
 
 ![1776532731980](image/native/1776532731980.png)
 
-The application currently only logs critical change events, but we've considered adding finer control over logging in certified builds. For example, it is possible to log every node.exe/npm/npx invocation in strongly audited environments. The choice was made to not include this to prevent noisy logs, but it is possible.
+Only critical change events are logged by default. Additional logging is available through configuration. It is possible to log every node.exe/npm/npx invocation.
 
-:::warning
-The community installer prompts the user to elevate permissions for the specific task of registering NVM for Windows as a system event source. **Do not run the installer as an administrator!** Running as administrator will configure all settings for the "administrator" account instead of your user account.
+:::warning Basic Logging
+The **community** and **certified distribution** editions write plaintext entries to the Windows Application log (shown above), with generic event codes.
 
-**The certified build installer supports deploying NVM for Windows without this concern.**
+If the NVM for Windows community installer is prevented from registering itself as a Windows event source, Application log entries are written as an "unknown" event source instead of "NVM for Windows". This is not an issue in certified distribution builds.
+:::
 
-If it is not possible to elevate permissions during installation, event logging will still work, but Windows will show an "unknown" source instead of "NVM for Windows". It will also fallback to more generic event codes.
+:::tip SIEM/Audit Logging
+Certified **audit/governance editions** write structured entries, with well known SIEM event codes, to a dedicated native NVM for Windows log (not the Application log). This is designed for streamlined SIEM integration and simple querying.
 :::
 
 ## Windows Notification Center
@@ -43,10 +45,10 @@ Since all notifications leverage the notification center, personal notification 
 
 As of v2.0.0, settings and preferences are stored in the registry under user keys. These can be modified with the [`nvm config`](../command/config) command.
 
-Prior versions of NVM for Windows utilized a plain text file for settings. Some users experienced difficulties with special characters due to encoding types enforced by older versions of Go. By leveraging the registry instead, Windows handles encoding natively, by the native locale.
+:::info Attention International v1 Users
+Prior versions of NVM for Windows utilized a plain text `settings.txt` file. Some users experienced difficulties using special characters caused by encoding types enforcement in older versions of Go. Windows handles locale encoding natively in the registry, eliminating this problem.
+:::
 
 :::tip Enterprise Security
-NVM for Windows provides significant capabilities for developers. In highly regulated environments, some of these capabilities may need to be throttled or disabled for compliance.
-
-**Certified builds** provide an option to override settings, enabling organizations to secure desktop environments according to their own policies.
+NVM for Windows provides significant capabilities for developers. In highly regulated environments, some of these capabilities may need to be throttled or disabled for compliance. **Certified builds** provide an option to override/enforce registry settings, enabling organizations to secure desktop environments according to their own policies.
 :::
