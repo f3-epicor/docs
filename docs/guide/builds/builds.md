@@ -9,30 +9,32 @@ This guide details the differences between NVM for Windows community builds and 
 
 ## Community Builds
 
-Community builds are designed for individuals. They contain the full application with all features. They do not contain capabilities for centralized management. These builds are released using an open source `.exe` installer.
+Community builds are designed for individuals. They contain the full application with all features. They do not contain capabilities for centralized management. These builds are released as an Authenticode-signed open source `.exe` installer (Winget-friendly). Program files install under the per-user LocalAppData root; Node.js storage remains configurable.
 
-:::warning Notice to NVM for Windows v1 Users
-NVM for Windows v2 community builds are *not code-signed*. NVM for Windows has maintained a high reputation score with Microsoft for over a decade, but community users may still see the SmartScreen filter during installation/upgrade.
+:::info Supported use
+Community is supported for individual workstations. Org-standard images, Program Files installs, MSI, ADMX, and Intune packages are provided by **NVM for Windows Certified Builds**.
+:::
 
-_Example:_
-
-![Example SmartScreen Filter](/img/guide_smartscreen.png)
+:::tip Layout warning
+If Community `nvm.exe` runs outside `%LOCALAPPDATA%\Author Software\nvm`, the CLI warns and may write Application log **NVM4101** (throttled). That flags an unsupported trust boundary—not a SmartScreen issue.
 :::
 
 ## Certified Builds
 
-Certified builds are designed for teams and organizations who need to centralize software distribution, audit activity, comply with regulations, & enforce usage/security policies. These builds deliver the same application while adding meaningful management capabilities. Certified builds are available on [nvm-windows.com](https://nvm-windows.com).
+**NVM for Windows Certified Builds** are designed for teams and organizations who need to centralize software distribution, audit activity, comply with regulations, and enforce usage/security policies. These builds deliver the same application while adding meaningful management capabilities, an IT-managed Program Files layout, and MSI/Intune packaging. Certified Builds are available on [nvm-windows.com](https://nvm-windows.com).
 
 ### Capability Comparison
 
-||Distribution|Audit|Governance|Custom|
-|:-|:-:|:-:|:-:|:-:|
-|**Code Signed**|✓|✓|✓|✓|
-|**Auditing & Observability**||✓|✓|✓|
-|**Policy Management**|||✓|✓|
-|**Enterprise Agreements**||||✓|
+||Community|Distribution|Audit|Governance|Custom|
+|:-|:-:|:-:|:-:|:-:|:-:|
+|**Authenticode**|✓|✓|✓|✓|✓|
+|**MSI / Intune / ADMX**||✓|✓|✓|✓|
+|**Program Files layout**||✓|✓|✓|✓|
+|**Auditing & Observability**|||✓|✓|✓|
+|**Policy Management**||||✓|✓|
+|**Enterprise Agreements**|||||✓|
 
-All certified builds are distributed as `.msi`/`intunewin` files. These are designed for deploying NVM for Windows through Microsoft Entra, Active Directory (AD), Microsoft Endpoint Configuration Manager (MECM), or manually. _(Google Workspace support is planned)_
+All **NVM for Windows Certified Builds** are distributed as `.msi`/`intunewin` files. These are designed for deploying through Microsoft Entra, Active Directory (AD), Microsoft Endpoint Configuration Manager (MECM), or manually. _(Google Workspace support is planned)_
 
 ### Code Signing Authority
 

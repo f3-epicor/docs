@@ -38,19 +38,22 @@ Configuration lives under `nvm config` / `nvm cfg`. Day-to-day commands (`instal
 
 Same core product; different packaging and controls. Full comparison: [Choosing an Edition](../guide/builds/builds).
 
-| | **Community** | **Certified** |
+| | **Community** | **Certified Builds** |
 |--|---------------|---------------|
-| **Who** | Individuals and open teams | Organizations that need signed deploy, audit, or policy |
-| **License** | MIT | Commercial EULA |
-| **Install** | GitHub / winget `.exe` | MSI (+ Intune / AD / MECM paths by edition) |
+| **Who** | Individuals and open teams | Organizations that need managed deploy, audit, or policy |
+| **License** | MIT (supported for individual workstations) | Commercial EULA |
+| **Install** | GitHub / winget `.exe` (Authenticode-signed); program root under LocalAppData | MSI (+ Intune / AD / MECM); program files under Program Files |
 | **Management** | Local `nvm config` | Optional structured logging, ADMX policy, licensing by tier |
 
-Community builds ship the full developer feature set without centralized policy. Certified builds add Authenticode signing and, by tier, compliance logging and governance (version allowlists, proxies, air-gap, ADMX, and related enterprise surfaces).
+Community builds ship the full developer feature set without centralized policy. **NVM for Windows Certified Builds** add IT-managed Program Files layout, MSI/Intune packaging, and by tier compliance logging and governance (version allowlists, proxies, air-gap, ADMX, and related enterprise surfaces).
 
-:::tip v1 users
-Community v2 installers are not code-signed. Windows SmartScreen may prompt even though the project has a long Windows track record. Certified builds are signed by Author Software Inc.
+:::tip Supported layout
+Community program files are supported under `%LOCALAPPDATA%\Author Software\nvm`. Running Community from another program root is unsupported and may log Application Warning **NVM4101**. Org-standard images and Program Files installs should use **NVM for Windows Certified Builds**.
 :::
 
+:::tip Winget / silent install
+Community silent install (`/VERYSILENT`) and Winget remain supported. Fleet artifacts (MSI, ADMX, Intune) stay Certified Builds–only.
+:::
 ## What’s different in v2
 
 v2 keeps link mode and adds **shim mode** as the default modern path: per-directory switching, auto-install of missing versions, caching, parallel installs, native extraction, and tighter Windows integrations (notifications, Event Viewer, and related tooling). Details: [What’s new in v2](./newv2).
@@ -58,7 +61,7 @@ v2 keeps link mode and adds **shim mode** as the default modern path: per-direct
 ## Who should use what
 
 - **Solo / OSS / most teams:** Community — install from [GitHub releases](https://github.com/nvm-windows/nvm/releases) or winget, then `nvm install lts`.
-- **IT / security / regulated orgs:** Certified — MSI distribution, signing, and (as licensed) audit or policy packs. See [Deployment](../guide/deploy/deploy).
+- **IT / security / regulated orgs:** **NVM for Windows Certified Builds** — MSI distribution, Program Files layout, and (as licensed) audit or policy packs. See [Deployment](../guide/deploy/deploy).
 
 ## Stewardship
 
